@@ -1,25 +1,33 @@
 #include "../inc/cub3d.h"
 
-int validate_file(t_imgs *imgs)
+int validate_file(t_cubed *s)
 {
+	int i;
+
+	i = 64;
 	printf("VALIDATE FILE\n");
-	if (check_textures(imgs) == 1)
+	if (check_textures(&s->imgs) == 1)
 		return (printf(F_ERR));
-	if (check_colours(imgs) == 1)
+	if (check_colours(&s->imgs) == 1)
 		return (printf(C_ERR));
+	s->tex[0].dir = mlx_xpm_file_to_image(s->mx, s->imgs.no, &i, &i);
+	s->tex[1].dir = mlx_xpm_file_to_image(s->mx, s->imgs.so, &i, &i);
+	s->tex[2].dir = mlx_xpm_file_to_image(s->mx, s->imgs.ea, &i, &i);
+	s->tex[3].dir = mlx_xpm_file_to_image(s->mx, s->imgs.we, &i, &i);
+
 	return (0);
 }
 //COmprueba si existen y si tienen .xml || HECHO?
 int	check_ext(t_imgs *imgs)
 {
 	printf("CHECK EXTENSION\n");
-	if (!imgs->no || ft_strcmp(ft_strrchr(imgs->no, '.'), ".xml") == 0)
+	if (!imgs->no || ft_strcmp(ft_strrchr(imgs->no, '.'), ".xpm") == 0)
 		return (1);
-	if (!imgs->so || ft_strcmp(ft_strrchr(imgs->so, '.'), ".xml") == 0)
+	if (!imgs->so || ft_strcmp(ft_strrchr(imgs->so, '.'), ".xpm") == 0)
 		return (1);
-	if (!imgs->ea || ft_strcmp(ft_strrchr(imgs->ea, '.'), ".xml") == 0)
+	if (!imgs->ea || ft_strcmp(ft_strrchr(imgs->ea, '.'), ".xpm") == 0)
 		return (1);
-	if (!imgs->we || ft_strcmp(ft_strrchr(imgs->we, '.'), ".xml") == 0)
+	if (!imgs->we || ft_strcmp(ft_strrchr(imgs->we, '.'), ".xpm") == 0)
 		return (1);
 	return (0);
 }

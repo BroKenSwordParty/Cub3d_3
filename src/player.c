@@ -6,7 +6,7 @@
 /*   By: ghoyuelo <ghoyuelo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/20 01:28:11 by ghoyuelo          #+#    #+#             */
-/*   Updated: 2024/06/20 01:38:48 by ghoyuelo         ###   ########.fr       */
+/*   Updated: 2024/06/22 00:26:48 by ghoyuelo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -74,6 +74,7 @@ void	get_player_init(t_cubed *s)
 	int		j;
 	int		check;
 
+	//s->player = calloc(1, sizeof(t_player));
 	check = 0;
 	i = 0;
 	while (++i < (s->height - 1) && check != 1)

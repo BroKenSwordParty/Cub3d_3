@@ -4,9 +4,7 @@ SRC = src/main.c\
 		src/arg_check.c\
 		src/map_error.c\
 		src/map_check.c\
-		src/mlx_things.c\
 		src/file_check.c\
-		src/mlx_things.c\
 		src/utils.c\
 		src/file_utils.c\
 		src/raycasting.c\
@@ -26,7 +24,7 @@ CC = cc -g3 -fsanitize=address
 FLAGS = -Wall -Wextra -Werror
 
 RM = rm -rf
-MLX = -L/mlx -lmlx -lXext -lX11 -lm
+MLX = -L/mlx -lXext -lX11 -lm -lbsd
 SAN = -g3 -fsanitize=address
 
 all: $(NAME)
@@ -37,7 +35,7 @@ all: $(NAME)
 $(NAME): $(OBJS)
 	@make -C mlx/
 	@make -C libft/
-	@$(CC) $(FLAGS) $^ -o $@ $(LIBFT) $(MLX)
+	@$(CC) $(FLAGS) $(MLX) -o $@  $(SRC) $(LIBFT) $(LIBX) 
 	@echo "Done. "
 
 clean:
@@ -47,6 +45,7 @@ clean:
 
 fclean: clean
 	@$(RM) $(NAME)
+	@make fclean -C libft/
 
 re: fclean all
 

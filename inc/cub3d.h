@@ -1,7 +1,6 @@
 #ifndef CUB3D_H
 # define	CUB3D_H
 
-# include <mlx.h>
 # include "../libft/libft.h"
 # include "../mlx/mlx.h"
 # include <math.h>
@@ -56,22 +55,23 @@ typedef struct s_imgs
 // Struct para posicion del jugador y dirección del personaje
 typedef struct s_player
 {
-	int		x;
-	int		y;
-	char	dir;
+	int		x; //
+	int		y; //
+	char	dir; //
 	void	*player_dir; // ESTO NO SE SI LO USO NI SI LO VOY A USAR
-	double	pos_x;
-	double	pos_y;
-	double	dir_x;
-	double	old_dir_x;
-	double	dir_y;
-	double	plane_x;
-	double	old_plane_x;
-	double	plane_y;
+	double	pos_x; //
+	double	pos_y; //
+	double	dir_x; //
+	double	old_dir_x; //
+	double	dir_y; //
+	double	plane_x; //
+	double	old_plane_x; //
+	double	plane_y; //
 }	 		t_player;
 
 typedef struct s_mlx
 {
+	void 	*dir; // PUNTERO A LA PUTA MIERDA ESTA
 	void	*img;
 	void	*addr;//puntero a la dirección de los datos de una imagen
 	int		bits_per_pixel;
@@ -83,29 +83,29 @@ typedef struct s_mlx
 
 typedef struct s_ray
 {
-	double	camera_x;
-	double	raydir_x;
-	double	raydir_y;
-	int		x;
-	int		y;
-	int		map_x;
-	int		map_y;
-	double	side_dist_x;
-	double	side_dist_y;
-	double	delta_dist_x;
-	double	delta_dist_y;
-	double	perp_wall_dist;
-	int		step_x;
-	int		step_y;
-	int		hit;
-	int		side;
-	int		line_height;
-	int		draw_start;
-	int		draw_end;
-	int		h;
-	int		tex_x;
-	int		tex_y;
-	int		tex;
+	double	camera_x; //
+	double	raydir_x; //
+	double	raydir_y; //
+	int		x;//
+	int		y; //
+	int		map_x;//
+	int		map_y;//
+	double	side_dist_x;//
+	double	side_dist_y;//
+	double	delta_dist_x;//
+	double	delta_dist_y;//
+	double	perp_wall_dist; // 
+	int		step_x; //
+	int		step_y; // 
+	int		hit; //
+	int		side; //
+	int		line_height; // 
+	int		draw_start; // 
+	int		draw_end; //
+	int		h;// == height
+	int		tex_x; //
+	int		tex_y; //
+	int		tex; //
 }			t_ray;
 
 // Estructura general.
@@ -113,8 +113,8 @@ typedef struct s_ray
 typedef struct s_cubed
 {
 	ssize_t		fd;
-	size_t		width;
-	size_t		height;
+	int		width;
+	int		height;
 	char		**file;
 	char		*line;
 	void		*mx; // Esto debería ir en otro sitio?¿?¿
@@ -132,13 +132,11 @@ typedef struct s_cubed
 
 void	args_checker(int argc, char **argv);
 void	init_struc(t_cubed *s, char *map_arg);
-void	create_file(t_cubed *s, char *map_arg);
+void	create_file(t_cubed *s);
 void	fill_and_check(t_cubed *s);
 void	fill_map(t_cubed *s);
 void	file_checker(t_cubed *s, char *map_arg);
-void	map_err(t_cubed *s);
 void 	check_map(t_cubed *s);
-void	line_error(t_cubed *s);
 void	init_mlx(t_cubed *s);
 void	hooks(t_cubed *s);
 void	f_exit(char *problem, char *to_free);
@@ -147,7 +145,7 @@ int		check_ext(t_imgs *imgs);
 int		check_colours(t_imgs *imgs);
 int		check_textures(t_imgs *imgs);
 int		check_sides(t_cubed *s, int i, int j);
-int		validate_file(t_imgs *imgs);
+int		validate_file(t_cubed *s);
 int		inputs(int k, t_cubed *s);
 int		close_map(t_cubed *s);
 int		outer_lines(char *map, char player, int i);

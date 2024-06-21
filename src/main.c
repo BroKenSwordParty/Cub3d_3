@@ -3,9 +3,6 @@
 // ACABADA
 void	init_struc(t_cubed *s, char *map_arg)
 {
-	int		i;
-
-	i = 0;
 	s->fd = open(map_arg, O_RDONLY);
 	if (s->fd == -1)
 	{

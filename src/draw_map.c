@@ -6,21 +6,25 @@
 /*   By: ghoyuelo <ghoyuelo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/15 01:51:15 by ghoyuelo          #+#    #+#             */
-/*   Updated: 2024/06/20 19:38:04 by ghoyuelo         ###   ########.fr       */
+/*   Updated: 2024/06/21 23:35:11 by ghoyuelo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../inc/cub3d.h"
 
-/* void	my_mlx_pixel_put(t_cubed *s, int x, int y, int color)
+void	my_mlx_pixel_put(t_cubed *s, int x, int y, int color)
 {
 	char	*dst;
 
 	dst = s->mlx_s.addr + (y * s->mlx_s.line_length + x * (s->mlx_s.bits_per_pixel / 8));
-	*(unsigned int *)dst = color; //AQUI
-} */
+
+	//printf("TESTEO DE VALORES:\n\ny= %d\nline_length= %d\nbits_per_pixel= %d\nx: %d\n\n", y, s->mlx_s.line_length, s->mlx_s.bits_per_pixel, x);
+	
+	*(unsigned int *)dst = color; //AQUI x2
+} 
 // He puesto esto y se queda en bucle intentando pintar
-void my_mlx_pixel_put(t_cubed *s, int x, int y, int color) {
+/*void my_mlx_pixel_put(t_cubed *s, int x, int y, int color) 
+{
     char *dst;
     // Verifica que las coordenadas estén dentro de los límites de la imagen
     if (x < 0 || y < 0 || x >= WIDTH || y >= HEIGTH) {
@@ -36,7 +40,7 @@ void my_mlx_pixel_put(t_cubed *s, int x, int y, int color) {
     }
     // Escribe el color en la posición calculada
     color = *(unsigned int *)dst; 
-}
+}*/
 
 void	my_mlx_column_color(t_cubed *s, t_ray ray, int color)
 {

@@ -21,7 +21,7 @@ void	args_checker(int argc, char **argv)
 	}
 }
 // TERMINADA
-void	create_file(t_cubed *s, char *map_arg)
+void	create_file(t_cubed *s)
 {
 	char	*line;
 	int		i;
@@ -57,12 +57,10 @@ void	print_file(t_cubed *s)
 // CHECKEO EL FILE QUE HE CREADO Y LOS COLORES
 void	file_checker(t_cubed *s, char *map_arg)
 {
-	int i = 0;
-
 	s->fd = open(map_arg, O_RDONLY);
-	create_file(s, map_arg);
+	create_file(s);
 	fill_and_check(s);
-	if (validate_file(&s->imgs) == 1)
+	if (validate_file(s) == 1)
 		exit(1); // AQUI HAY QUE LIBERAR COSITAS Y NO SALIR CON EXIT ------
 	fill_map(s);
 	check_map(s);

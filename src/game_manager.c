@@ -6,7 +6,7 @@
 /*   By: ghoyuelo <ghoyuelo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/17 18:07:49 by ghoyuelo          #+#    #+#             */
-/*   Updated: 2024/06/20 20:46:16 by ghoyuelo         ###   ########.fr       */
+/*   Updated: 2024/06/22 00:19:38 by ghoyuelo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,6 +69,9 @@ void	init_window(t_cubed *s)
     s->mw = mlx_new_window(s->mx, WIDTH, HEIGTH, NAME);
     s->mlx_s.img = mlx_new_image(s->mx, WIDTH, HEIGTH);
     s->mlx_s.addr = mlx_get_data_addr(s->mlx_s.img, &s->mlx_s.bits_per_pixel,&s->mlx_s.line_length, &s->mlx_s.endian);
+   	printf("bits_per_pixel en init window: %d\n", s->mlx_s.bits_per_pixel);
+	printf("line_length en init window: %d\n", s->mlx_s.line_length);
+
     mlx_hook(s->mw, 2, 1L << 0, ft_input, s);
     mlx_hook(s->mw, 17, 1L << 17, ft_esc, s);
     mlx_loop_hook(s->mx, raycast, s);

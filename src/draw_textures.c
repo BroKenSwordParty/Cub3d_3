@@ -6,7 +6,7 @@
 /*   By: ghoyuelo <ghoyuelo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/15 00:53:50 by ghoyuelo          #+#    #+#             */
-/*   Updated: 2024/06/20 21:10:40 by ghoyuelo         ###   ########.fr       */
+/*   Updated: 2024/06/21 23:40:54 by ghoyuelo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,6 +39,7 @@ void	my_mlx_draw_column(t_cubed *s, t_ray ray, t_mlx *texture)
 
 void	get_texture_id(t_ray *ray)
 {
+	
 	if (ray->side == 0)
 	{
 		if (ray->raydir_x > 0)
@@ -62,8 +63,8 @@ void	print_texture(t_cubed *s, t_ray ray, double tex_pos, double step)
 	while (ray.y < ray.draw_start)
 		my_mlx_pixel_put(s, ray.x, ray.y++, s->imgs.ceiling);
 	ray.y = ray.draw_start;
-	printf("okkkkkkkkkkkkkk \n");
-		printf("HEIGHT: %d\n", s->tex[ray.tex].h);
+	printf(" esto es h: %d\n", ray.h);
+	printf("step2: %f\n", step);
 	while (ray.y < ray.draw_end)
 	{
 		ray.tex_y = (int)tex_pos & (s->tex[ray.tex].h - 1);
@@ -71,6 +72,8 @@ void	print_texture(t_cubed *s, t_ray ray, double tex_pos, double step)
 		my_mlx_draw_column(s, ray,&s->tex[ray.tex]);
 		ray.y++;
 	}
+	printf("tex_y: %d\n", ray.tex_y);
+	printf("tex_pos: %f\n", tex_pos);
 	color_rgb_floor(s);
 	while (ray.y < s->height)
 		my_mlx_pixel_put(s, ray.x, ray.y++, s->imgs.floor);
