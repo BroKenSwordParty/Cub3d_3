@@ -6,7 +6,7 @@
 /*   By: ghoyuelo <ghoyuelo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/20 01:28:11 by ghoyuelo          #+#    #+#             */
-/*   Updated: 2024/06/22 00:26:48 by ghoyuelo         ###   ########.fr       */
+/*   Updated: 2024/06/22 22:29:45 by ghoyuelo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,14 +67,13 @@ int	get_player_init_n(t_cubed *s, int i, int j)
 	s->imgs.map[i][j] = '0';
 	return (1);
 }
-// TERMINADA
+
 void	get_player_init(t_cubed *s)
 {
 	int		i;
 	int		j;
 	int		check;
 
-	//s->player = calloc(1, sizeof(t_player));
 	check = 0;
 	i = 0;
 	while (++i < (s->height - 1) && check != 1)
@@ -82,7 +81,6 @@ void	get_player_init(t_cubed *s)
 		j = 0;
 		while (s->imgs.map[i][++j] && check != 1)
 		{
-			printf("MAP CHAR = %c\n", s->imgs.map[i][j]);
 			if (s->imgs.map[i][j] == 'N')
 				check = get_player_init_n(s, i, j);
 			if (s->imgs.map[i][j] == 'S')

@@ -1,8 +1,19 @@
+# **************************************************************************** #
+#                                                                              #
+#                                                         :::      ::::::::    #
+#    Makefile                                           :+:      :+:    :+:    #
+#                                                     +:+ +:+         +:+      #
+#    By: ghoyuelo <ghoyuelo@student.42.fr>          +#+  +:+       +#+         #
+#                                                 +#+#+#+#+#+   +#+            #
+#    Created: 2024/06/22 19:47:02 by ghoyuelo          #+#    #+#              #
+#    Updated: 2024/06/22 21:48:54 by ghoyuelo         ###   ########.fr        #
+#                                                                              #
+# **************************************************************************** #
+
 NAME = cub3D
 
 SRC = src/main.c\
 		src/arg_check.c\
-		src/map_error.c\
 		src/map_check.c\
 		src/file_check.c\
 		src/utils.c\
@@ -11,15 +22,14 @@ SRC = src/main.c\
 		src/game_manager.c\
 		src/draw_map.c\
 		src/draw_textures.c\
-		src/draw_terminal.c\
 		src/cam_movements.c\
 		src/get_movements.c\
 		src/player.c\
 
 OBJS = $(SRC:.c=.o)
 
-LIBFT = libft/libft.a #-Llibft -lft
-LIBX = mlx/libmlx.a #-Lmlx -lmlx
+LIBFT = libft/libft.a
+LIBX = mlx/libmlx.a
 CC = cc -g3 -fsanitize=address
 FLAGS = -Wall -Wextra -Werror
 

@@ -1,16 +1,17 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   get_momements.c                                    :+:      :+:    :+:   */
+/*   get_movements.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ghoyuelo <ghoyuelo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/18 18:10:36 by ghoyuelo          #+#    #+#             */
-/*   Updated: 2024/06/18 18:13:00 by ghoyuelo         ###   ########.fr       */
+/*   Updated: 2024/06/22 22:14:02 by ghoyuelo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../inc/cub3d.h"
+
 void	player_a(t_cubed *s)
 {
 	double	moved_x;
@@ -24,8 +25,6 @@ void	player_a(t_cubed *s)
 		s->player.pos_x = moved_x;
 	s->player.x = (s->player.pos_x);
 	s->player.y = (s->player.pos_y);
-	change_value(s);
-	printf("\e[1;1H\e[2J");
 }
 
 void	player_d(t_cubed *s)
@@ -41,8 +40,6 @@ void	player_d(t_cubed *s)
 		s->player.pos_x = moved_x;
 	s->player.x = (s->player.pos_x);
 	s->player.y = (s->player.pos_y);
-	change_value(s);
-	printf("\e[1;1H\e[2J");
 }
 
 void	player_w(t_cubed *s)
@@ -58,8 +55,6 @@ void	player_w(t_cubed *s)
 		s->player.pos_x = moved_x;
 	s->player.x = (s->player.pos_x);
 	s->player.y = (s->player.pos_y);
-	change_value(s);
-	printf("\e[1;1H\e[2J");
 }
 
 void	player_s(t_cubed *s)
@@ -75,6 +70,4 @@ void	player_s(t_cubed *s)
 		s->player.pos_x = moved_x;
 	s->player.x = (s->player.pos_x);
 	s->player.y = (s->player.pos_y);
-	change_value(s);
-	printf("\e[1;1H\e[2J");
 }

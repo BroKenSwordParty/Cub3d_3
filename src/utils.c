@@ -1,84 +1,70 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   utils.c                                            :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: ghoyuelo <ghoyuelo@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2024/06/22 19:47:12 by ghoyuelo          #+#    #+#             */
+/*   Updated: 2024/06/23 00:27:00 by ghoyuelo         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "../inc/cub3d.h"
 
-// si la dirección de la letra JUGADOR con ft_strchr y la de JUGADOR de ft_strrchr son distintas es que hay mas de un jugador
-// pero hay que hacerlas para **
 char	*ft_strchr_array(char **array)
 {
-
-	int	i;
-	int	j;
+	int		i;
+	int		j;
+	int		count;
+	int		c[2];
 
 	i = -1;
-	printf("FT_STRCHR_ARRAY\n");
+	count = 0;
 	while (array[++i])
 	{
-		j = -1;
-		while (array[i][++j])
+		j = 0;
+		while (array[i][j] != '\0')
 		{
-			if (array[i][j] == 'N' || array[i][j] == 'S' || array[i][j] == 'E' || array[i][j] == 'W')
-				return (&array[i][j]);
+			if (array[i][j] == 'N' || array[i][j] == 'S' ||
+				array[i][j] == 'E' || array[i][j] == 'W')
+			{
+				count++;
+				c[0] = i;
+				c[1] = j;
+			}
+			j++;
 		}
 	}
+	if (count == 1)
+		return (&array[c[0]][c[1]]);
 	return (0);
-}
-
-// funcion que va hasta el final del array y hace un ft_strrchr buscando al jugador
-char	*ft_strrchr_array(char **array)
-{
-	int	i;
-	int	j;
-
-	i = -1;
-	printf("FT_STRRCHR_ARRAY DEL REVES\n");
-	while (array[i])
-		i++;
-	while(i >= 0)
-	{
-		j = ft_strlen(array[i]);
-		while (j-- >= 0)
-		{
-			if (array[i][j] == 'N' || array[i][j] == 'S' || array[i][j] == 'E' || array[i][j] == 'W')
-				return (&array[i][j]);
-		}
-	}
-	return(0);
-}
-
-
-/*void	hooks(t_cubed *s)
-{
-	mlx_hook(s->mlx.win, 2, 1L << 0, key_pressed, s);
-	mlx_hook(s->mlx.win, 3, 1L << 1, key_release, s);
-	mlx_hook(s->mlx.win, 6, 1L << 6, mouse_move, s);
-	mlx_hook(s->mlx.win, 17, 1L << 17, destroy_window, s);
-}*/
-
-void	free_double_char(char **s)
-{
-	int	i;
-
-	if (s)
-	{
-		i = -1;
-		while (s[++i])
-			free(s[i]);
-		free (s);
-	}
 }
 
 void	color_rgb_ceiling(t_cubed *s)
 {
 	int	rgb_c;
+	int	r;
+	int	g;
+	int	b;
 
-	//Inicializar a 0 rgb_c??
-	rgb_c = ft_atoi(s->imgs.c[0]) << 16 | ft_atoi(s->imgs.c[1]) << 8 | ft_atoi(s->imgs.c[2]);
+	r = ft_atoi(s->imgs.c[0]);
+	g = ft_atoi(s->imgs.c[1]);
+	b = ft_atoi(s->imgs.c[2]);
+	rgb_c = r << 16 | g << 8 | b;
 	s->imgs.ceiling = rgb_c;
 }
 
 void	color_rgb_floor(t_cubed *s)
 {
 	int	rgb_f;
+	int	r;
+	int	g;
+	int	b;
 
-	rgb_f = ft_atoi(s->imgs.f[0]) << 16 | ft_atoi(s->imgs.f[1]) << 8 | ft_atoi(s->imgs.f[2]);
+	r = ft_atoi(s->imgs.f[0]);
+	g = ft_atoi(s->imgs.f[1]);
+	b = ft_atoi(s->imgs.f[2]);
+	rgb_f = r << 16 | g << 8 | b;
 	s->imgs.floor = rgb_f;
 }

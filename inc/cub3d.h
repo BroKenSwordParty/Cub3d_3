@@ -7,14 +7,12 @@
 
 # define NAME "It's made in less than 30 DAYS"
 
-// ESTOS MACROS, que son las direcciones de los assets. De momento no se toca
 # define WALL "./assets/_oseano.xpm"
 # define FLOOR "./assets/_sand.xpm"
 # define P "./assets/_BorderlinePirate.xpm"
 # define ITEM "./assets/_item.xpm"
 # define EXIT "./assets/_exit.xpm"
 
-// Gestion de errores escrito aquí para que quede más limpio.
 # define ARG_NUM "Error\nMust introduce 2 valid arguments\n"
 # define ARG_INV "Error\nInvalid argument\n"
 # define ARG_CUB "Error\nFile must be .cub\n"
@@ -33,12 +31,10 @@
 # define WIN "YOU FOUND THE TREASURE!!!!\n"
 
 # define SIZE 64
-# define WIDTH 900
-# define HEIGTH 600
+# define WIDTH 1800
+# define HEIGTH 1200
 # define MOVE_SPEED 0.2
 # define ROT_SPEED 0.3
-
-// Estructura para alojar las direcciones de las texturas. Usaremos una función para cargar las imagenes con las direcciones de los macros de arriba.
 typedef struct s_imgs
 {
 	char	*no;
@@ -48,68 +44,63 @@ typedef struct s_imgs
 	char	**c;
 	char	**f;
 	char	**map;
-	int 	ceiling; //ceiling color rgb
-	int 	floor;   //floor color rgb
+	int 	ceiling;
+	int 	floor;   
 }	 		t_imgs;
 
-// Struct para posicion del jugador y dirección del personaje
 typedef struct s_player
 {
-	int		x; //
-	int		y; //
-	char	dir; //
-	void	*player_dir; // ESTO NO SE SI LO USO NI SI LO VOY A USAR
-	double	pos_x; //
-	double	pos_y; //
-	double	dir_x; //
-	double	old_dir_x; //
-	double	dir_y; //
-	double	plane_x; //
-	double	old_plane_x; //
-	double	plane_y; //
+	int		x;
+	int		y;
+	char	dir;
+	double	pos_x;
+	double	pos_y;
+	double	dir_x;
+	double	old_dir_x;
+	double	dir_y;
+	double	plane_x;
+	double	old_plane_x;
+	double	plane_y;
 }	 		t_player;
 
 typedef struct s_mlx
 {
-	void 	*dir; // PUNTERO A LA PUTA MIERDA ESTA
+	void 	*dir;
 	void	*img;
-	void	*addr;//puntero a la dirección de los datos de una imagen
+	void	*addr;
 	int		bits_per_pixel;
 	int		line_length;
-	int		endian; //formato de los datos de color en la imagen
+	int		endian;
 	int		w;
 	int		h;
 }				t_mlx;
 
 typedef struct s_ray
 {
-	double	camera_x; //
-	double	raydir_x; //
-	double	raydir_y; //
-	int		x;//
-	int		y; //
-	int		map_x;//
-	int		map_y;//
-	double	side_dist_x;//
-	double	side_dist_y;//
-	double	delta_dist_x;//
-	double	delta_dist_y;//
-	double	perp_wall_dist; // 
-	int		step_x; //
-	int		step_y; // 
-	int		hit; //
-	int		side; //
-	int		line_height; // 
-	int		draw_start; // 
-	int		draw_end; //
-	int		h;// == height
-	int		tex_x; //
-	int		tex_y; //
-	int		tex; //
+	double	camera_x;
+	double	raydir_x;
+	double	raydir_y;
+	int		x;
+	int		y;
+	int		map_x;
+	int		map_y; 
+	double	side_dist_x;
+	double	side_dist_y;
+	double	delta_dist_x;
+	double	delta_dist_y;
+	double	perp_wall_dist;
+	int		step_x;
+	int		step_y;
+	int		hit; 
+	int		side;
+	int		line_height;
+	int		draw_start; 
+	int		draw_end; 
+	int		h;
+	int		tex_x;
+	int		tex_y;
+	int		tex;
 }			t_ray;
-
-// Estructura general.
-// La relacionamos con las estructuras que creemos para poder pasar toda la info de una FT a otra sin tener que pasar datos específicos.
 typedef struct s_cubed
 {
 	ssize_t		fd;
@@ -117,7 +108,7 @@ typedef struct s_cubed
 	int		height;
 	char		**file;
 	char		*line;
-	void		*mx; // Esto debería ir en otro sitio?¿?¿
+	void		*mx; 
 	void		*mw;
 	void		*mi;
 	int			max_x;
@@ -126,8 +117,6 @@ typedef struct s_cubed
 	t_player	player;
 	t_mlx		tex[4];
 	t_mlx		mlx_s;
-	//void		*mlx; //Creo que es lo mismo que mx
-	//void		*window; // Creo que es lo mismo que mw
 }				t_cubed;
 
 void	args_checker(int argc, char **argv);
@@ -137,20 +126,18 @@ void	fill_and_check(t_cubed *s);
 void	fill_map(t_cubed *s);
 void	file_checker(t_cubed *s, char *map_arg);
 void 	check_map(t_cubed *s);
-void	init_mlx(t_cubed *s);
-void	hooks(t_cubed *s);
-void	f_exit(char *problem, char *to_free);
 int		try_open(t_imgs *imgs);
 int		check_ext(t_imgs *imgs);
 int		check_colours(t_imgs *imgs);
 int		check_textures(t_imgs *imgs);
 int		check_sides(t_cubed *s, int i, int j);
 int		validate_file(t_cubed *s);
-int		inputs(int k, t_cubed *s);
-int		close_map(t_cubed *s);
 int		outer_lines(char *map, char player, int i);
 char	*ft_strchr_array(char **array);
 char	*ft_strrchr_array(char **array);
+char 	**set_color(char *line);
+void	ft_free_exit(t_cubed *s, int i);
+void	ft_doublefree(char **s);
 
 /************** RAYCASTING *************/
 void	raycast_init(t_cubed *s, t_ray *ray);
@@ -175,13 +162,8 @@ int		ft_esc(t_cubed *s);
 /************ DRAW TEXTURES ************/
 void	print_texture(t_cubed *s, t_ray ray, double tex_pos, double step);
 void	get_texture_id(t_ray *ray);
-void	my_mlx_draw_column(t_cubed *s, t_ray ray, t_mlx *texture);
+void	my_mlx_draw_column(t_cubed *s, t_ray ray, t_mlx texture);
 unsigned int	get_mlx_pixel_color(t_mlx *mlx_s, int x, int y);
-
-/************ DRAW TERMINAL ************/
-void	position_values(t_cubed *s, int i, int j);
-void	change_value(t_cubed *s);
-void	print_data(t_cubed *s);
 
 /************ CAM MOVEMENTS ************/
 void	cam_left(t_cubed *s);
@@ -201,7 +183,6 @@ int		get_player_init_e(t_cubed *s, int i, int j);
 int		get_player_init_w(t_cubed *s, int i, int j);
 
 /************* UTILS *******************/
-//void	hooks(t_cubed *s);
 void	free_double_char(char **str);
 void	color_rgb_ceiling(t_cubed *s);
 void	color_rgb_floor(t_cubed *s);

@@ -6,7 +6,7 @@
 /*   By: ghoyuelo <ghoyuelo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/15 01:51:15 by ghoyuelo          #+#    #+#             */
-/*   Updated: 2024/06/21 23:35:11 by ghoyuelo         ###   ########.fr       */
+/*   Updated: 2024/06/22 22:19:42 by ghoyuelo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,31 +16,10 @@ void	my_mlx_pixel_put(t_cubed *s, int x, int y, int color)
 {
 	char	*dst;
 
-	dst = s->mlx_s.addr + (y * s->mlx_s.line_length + x * (s->mlx_s.bits_per_pixel / 8));
-
-	//printf("TESTEO DE VALORES:\n\ny= %d\nline_length= %d\nbits_per_pixel= %d\nx: %d\n\n", y, s->mlx_s.line_length, s->mlx_s.bits_per_pixel, x);
-	
-	*(unsigned int *)dst = color; //AQUI x2
-} 
-// He puesto esto y se queda en bucle intentando pintar
-/*void my_mlx_pixel_put(t_cubed *s, int x, int y, int color) 
-{
-    char *dst;
-    // Verifica que las coordenadas estén dentro de los límites de la imagen
-    if (x < 0 || y < 0 || x >= WIDTH || y >= HEIGTH) {
-        printf("Error: Coordenadas fuera de los límites (%d, %d)\n", x, y);
-        return;
-    }
-    // Calcula la posición en la memoria del pixel (x, y)
-    dst = s->mlx_s.addr + (y * s->mlx_s.line_length + x * (s->mlx_s.bits_per_pixel / 8));
-    // Asegúrate de que dst no es NULL
-    if (dst == NULL) {
-        printf("Error: Dirección de memoria no válida\n");
-        return;
-    }
-    // Escribe el color en la posición calculada
-    color = *(unsigned int *)dst; 
-}*/
+	dst = s->mlx_s.addr + (y * s->mlx_s.line_length + x
+			* (s->mlx_s.bits_per_pixel / 8));
+	*(unsigned int *)dst = color;
+}
 
 void	my_mlx_column_color(t_cubed *s, t_ray ray, int color)
 {

@@ -6,7 +6,7 @@
 /*   By: ghoyuelo <ghoyuelo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/17 17:54:56 by ghoyuelo          #+#    #+#             */
-/*   Updated: 2024/06/17 19:31:29 by ghoyuelo         ###   ########.fr       */
+/*   Updated: 2024/06/22 21:57:51 by ghoyuelo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,8 +24,6 @@ void	cam_left(t_cubed *s)
 		* cos(-ROT_SPEED) - s->player.plane_y * sin(-ROT_SPEED);
 	s->player.plane_y = s->player.old_plane_x
 		* sin(-ROT_SPEED) + s->player.plane_y * cos(-ROT_SPEED);
-	change_value(s);
-	printf("\e[1;1H\e[2J");
 }
 
 void	cam_right(t_cubed *s)
@@ -40,6 +38,4 @@ void	cam_right(t_cubed *s)
 		* cos(ROT_SPEED) - s->player.plane_y * sin(ROT_SPEED);
 	s->player.plane_y = s->player.old_plane_x
 		* sin(ROT_SPEED) + s->player.plane_y * cos(ROT_SPEED);
-	change_value(s);
-	printf("\e[1;1H\e[2J");
 }

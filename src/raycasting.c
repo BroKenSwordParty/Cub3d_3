@@ -6,7 +6,7 @@
 /*   By: ghoyuelo <ghoyuelo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/13 18:11:05 by ghoyuelo          #+#    #+#             */
-/*   Updated: 2024/06/22 00:29:44 by ghoyuelo         ###   ########.fr       */
+/*   Updated: 2024/06/22 22:05:36 by ghoyuelo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@
 void	raycast_init(t_cubed *s, t_ray *ray)
 {
 	ray->camera_x = 2 * ray->x / (double)s->width - 1;
-	ray->raydir_x = s->_x + s->player.plane_x * ray->camera_x;
+	ray->raydir_x = s->player.dir_x + s->player.plane_x * ray->camera_x;
 	ray->raydir_y = s->player.dir_y + s->player.plane_y * ray->camera_x;
 	ray->map_x = (int)s->player.pos_x;
 	ray->map_y = (int)s->player.pos_y;
@@ -74,8 +74,8 @@ void	raycast_hit(t_cubed *s, t_ray *ray)
 			ray->map_y += ray->step_y;
 			ray->side = 1;
 		}
-		if (s->imgs.map[ray->map_y][ray->map_x] == '1') // map en struct principal??
-				ray->hit = 1;
+		if (s->imgs.map[ray->map_y][ray->map_x] == '1')
+			ray->hit = 1;
 	}
 }
 
@@ -115,8 +115,6 @@ void	texturing_calculations(t_cubed *s, t_ray *ray)
 	if (ray->side == 1 && ray->raydir_y < 0)
 		ray->tex_x = s->tex[ray->tex].w - ray->tex_x - 1;
 	step = 1.0 * s->tex[ray->tex].h / ray->line_height;
-	printf("step: %f\n", step);
 	tex_pos = (ray->draw_start - ray->h / 2 + ray->line_height / 2) * step;
-	printf("addr1: %p\n", s->mlx_s.addr);
 	print_texture(s, *ray, tex_pos, step);
 }
