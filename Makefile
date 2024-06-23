@@ -6,7 +6,7 @@
 #    By: ghoyuelo <ghoyuelo@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/06/22 19:47:02 by ghoyuelo          #+#    #+#              #
-#    Updated: 2024/06/22 21:48:54 by ghoyuelo         ###   ########.fr        #
+#    Updated: 2024/06/23 14:44:32 by ghoyuelo         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -34,18 +34,17 @@ CC = cc -g3 -fsanitize=address
 FLAGS = -Wall -Wextra -Werror
 
 RM = rm -rf
-MLX = -L/mlx -lXext -lX11 -lm -lbsd
-SAN = -g3 -fsanitize=address
+MLX = -lXext -lX11 -lm -lbsd
 
 all: $(NAME)
 
 %.o: %.c
-	@$(CC) -c $< -o $@ -Imlx
+	@$(CC) -c $< -o $@
 
 $(NAME): $(OBJS)
-	@make -C mlx/
+	@make -C mlx/ 2> /dev/null
 	@make -C libft/
-	@$(CC) $(FLAGS) $(MLX) -o $@  $(SRC) $(LIBFT) $(LIBX) 
+	@$(CC) $(FLAGS) $(MLX) -o $@  $(SRC) $(LIBFT) $(LIBX)
 	@echo "Done. "
 
 clean:

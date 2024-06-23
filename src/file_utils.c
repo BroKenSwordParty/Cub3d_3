@@ -6,7 +6,7 @@
 /*   By: ghoyuelo <ghoyuelo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/22 20:22:06 by ghoyuelo          #+#    #+#             */
-/*   Updated: 2024/06/22 23:27:23 by ghoyuelo         ###   ########.fr       */
+/*   Updated: 2024/06/23 14:46:17 by ghoyuelo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,7 +44,6 @@ void	ft_doublefree(char **s)
 		return ;
 	while (s[++i])
 	{
-		printf("CHECK: %s\n", s[i]);
 		free(s[i]);
 		s[i] = NULL;
 	}
@@ -54,8 +53,8 @@ void	ft_doublefree(char **s)
 
 void	ft_free_exit(t_cubed *s, int i)
 {
-/* 	if (s->imgs.map)
-		ft_doublefree(s->imgs.map); */
+	if (s->imgs.map)
+		ft_doublefree(s->imgs.map);
 	if (s->file)
 		ft_doublefree(s->file);
 	if (s->imgs.no)
@@ -66,7 +65,7 @@ void	ft_free_exit(t_cubed *s, int i)
 		free(s->imgs.ea);
 	if (s->imgs.we)
 		free(s->imgs.we);
- 	if (s->imgs.c)
+	if (s->imgs.c)
 		ft_doublefree(s->imgs.c);
 	if (s->imgs.f)
 		ft_doublefree(s->imgs.f);

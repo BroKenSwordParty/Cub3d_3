@@ -6,7 +6,7 @@
 /*   By: ghoyuelo <ghoyuelo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/18 18:10:36 by ghoyuelo          #+#    #+#             */
-/*   Updated: 2024/06/22 22:14:02 by ghoyuelo         ###   ########.fr       */
+/*   Updated: 2024/06/23 14:38:11 by ghoyuelo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,6 +25,7 @@ void	player_a(t_cubed *s)
 		s->player.pos_x = moved_x;
 	s->player.x = (s->player.pos_x);
 	s->player.y = (s->player.pos_y);
+	raycast(s);
 }
 
 void	player_d(t_cubed *s)

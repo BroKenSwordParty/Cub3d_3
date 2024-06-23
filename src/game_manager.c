@@ -6,7 +6,7 @@
 /*   By: ghoyuelo <ghoyuelo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/17 18:07:49 by ghoyuelo          #+#    #+#             */
-/*   Updated: 2024/06/22 23:28:04 by ghoyuelo         ###   ########.fr       */
+/*   Updated: 2024/06/23 14:46:32 by ghoyuelo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,6 @@ int	ft_esc(t_cubed *s)
 
 int	ft_input(int keycode, t_cubed *s)
 {
-	printf("keycode: %d\n", keycode);
 	if (keycode == 65307)
 		ft_esc(s);
 	if (keycode == 119)

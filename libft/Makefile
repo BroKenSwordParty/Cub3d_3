@@ -48,13 +48,12 @@ SRCS = ft_isalpha.c\
 	  ft_lstclear.c\
 	  ft_lstiter.c\
 	  get_next_line.c\
-	  get_next_line_short.c\
 
 OBJS = $(SRCS:.c=.o)
 
 CC = gcc
 
-CFLAGS = -Wall -Werror -Wextra
+CFLAGS = -Wall -Werror -Wextra #-g3 -fsanitize=address
 
 LIBC = ar rcs
 
